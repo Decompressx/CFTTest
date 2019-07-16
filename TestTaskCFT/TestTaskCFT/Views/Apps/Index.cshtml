@@ -1,0 +1,49 @@
+﻿@using TestTaskCFT.Models
+@model IEnumerable<Application>
+@{
+    Layout = "~/Views/Layout/_Layout.cshtml";
+    ViewBag.Title = "Index";
+}
+<h2>Приложения</h2>
+
+<table id="tablepaging" class="table_blur">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AppName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescriptionApp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Precedency)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AppName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescriptionApp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precedency)
+            </td>
+        </tr>
+    }
+</table>
+<div id="pageNavPosition" style="padding-top: 20px" align="center">
+</div>
+<script>
+    var pager = new Pager('tablepaging', 10);
+    pager.init();
+    pager.showPageNav('pager', 'pageNavPosition');
+    pager.showPage(1);
+</script>
+<p>
+    @Html.ActionLink("Создать приложение", "Create")
+</p>
+
+
+

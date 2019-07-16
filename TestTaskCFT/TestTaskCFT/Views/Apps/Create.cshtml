@@ -1,0 +1,45 @@
+﻿@using TestTaskCFT.Models
+@model Application
+@{
+    Layout = "~/Views/Layout/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <h2>Создание приложения</h2>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div>
+            @Html.LabelFor(model => model.AppName)
+            <div>
+                @Html.EditorFor(model => model.AppName)
+                @Html.ValidationMessageFor(model => model.AppName)
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.DescriptionApp)
+            <div>
+                @Html.EditorFor(model => model.DescriptionApp)
+                @Html.ValidationMessageFor(model => model.DescriptionApp)
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Precedency)
+            <div>
+                @Html.EditorFor(model => model.Precedency)
+                @Html.ValidationMessageFor(model => model.Precedency)
+            </div>
+        </div>
+        <div class="button-div">
+            <div>
+                <input type="submit" value="Создать" />
+            </div>
+        </div>
+    </div>
+}
+<p>
+    @Html.ActionLink("К списку приложений", "Index")
+</p>
+

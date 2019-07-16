@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/Style.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="~/Scripts/PagingTable.js" type="text/javascript"></script>
+    <title>@ViewBag.Tittle</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a>
+                @Html.ActionLink("Приложения", "Index", "Apps")
+            </a>
+            <a>
+                @Html.ActionLink("Заявки", "Index", "Requests")
+            </a>
+        </nav>
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+﻿@using TestTaskCFT.Models
+@model Request
+@{
+    Layout = "~/Views/Layout/_Layout.cshtml";
+    ViewBag.Title = "Edit";
+}
+
+<h2>Изменить заявку</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <p>
+            @Html.LabelFor(model => model.RequestName)
+            <br />
+            @Html.EditorFor(model => model.RequestName)
+            @Html.ValidationMessageFor(model => model.RequestName)
+        </p>
+        <p>
+            @Html.LabelFor(model => model.EndTime)
+            <br />
+            @Html.EditorFor(model => model.EndTime)
+            @Html.ValidationMessageFor(model => model.EndTime)
+        </p>
+        <p>
+            @Html.LabelFor(model => model.DescriptionRequest)
+            <br />
+            @Html.EditorFor(model => model.DescriptionRequest)
+            @Html.ValidationMessageFor(model => model.DescriptionRequest)
+        </p>
+        <p>
+            @Html.LabelFor(model => model.Email)
+            <br />
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </p>
+        <p>
+            @Html.LabelFor(model => model.Application.AppName)
+            <br />
+            @Html.DropDownList("IdApp", null, "")
+            @Html.ValidationMessageFor(model => model.IdApp)
+        </p>
+        <p><input type="submit" value="Сохранить" /></p>
+    </fieldset>
+}
+<p>
+    @Html.ActionLink("К списку заявок", "Index")
+</p>

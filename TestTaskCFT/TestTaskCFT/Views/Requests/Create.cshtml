@@ -1,0 +1,59 @@
+﻿@using TestTaskCFT.Models
+@model Request
+@{
+    Layout ="~/Views/Layout/_Layout.cshtml";
+    ViewBag.Title = "Create";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <h2>Создание заявки</h2>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div>
+            @Html.LabelFor(model => model.RequestName)
+            <div>
+                @Html.EditorFor(model => model.RequestName)
+                @Html.ValidationMessageFor(model => model.RequestName)
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.EndTime)
+            <div>
+                @Html.EditorFor(model => model.EndTime)
+                @Html.ValidationMessageFor(model => model.EndTime)
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.DescriptionRequest)
+            <div>
+                @Html.EditorFor(model => model.DescriptionRequest)
+                @Html.ValidationMessageFor(model => model.DescriptionRequest)
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Email)
+            <div>
+                @Html.EditorFor(model => model.Email)
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.IdApp, "Приложение")
+            <div>
+                @Html.DropDownList("IdApp",null,"")
+                @Html.ValidationMessageFor(model => model.IdApp)
+            </div>
+        </div>
+        <div class="button-div">
+            <div>
+                <input type="submit" value="Создать"/>
+            </div>
+        </div>
+    </div>
+}
+<p>
+    @Html.ActionLink("К списку заявок", "Index")
+</p>
