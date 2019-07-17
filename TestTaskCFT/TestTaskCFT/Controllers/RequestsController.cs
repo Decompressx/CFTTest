@@ -8,22 +8,22 @@ namespace TestTaskCFT.Controllers
 {
     public class RequestsController : Controller
     {
-        RequestsDBEntities db = new RequestsDBEntities();
+        ModelContext db = new ModelContext();
 
         public ActionResult Index()
         {
-            return View(db.Requests.ToList());
+            return View(db.Requests.Include(app=>app.Application).ToList());
         }
 
         public ActionResult Create()
         {
-            ViewBag.IdApp = new SelectList(db.Applications, "Id", "AppName");
+            ViewBag.ApplicationId = new SelectList(db.Applications, "Id", "AppName");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,RequestName,EndTime,DescriptionRequest,Email,IdApp")] Request request)
+        public ActionResult Create([Bind(Include = "Id,RequestName,EndTime,DescriptionRequest,Email,ApplicationId")] Request request)
         {
             if (ModelState.IsValid)
             {
@@ -32,7 +32,7 @@ namespace TestTaskCFT.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdApp = new SelectList(db.Applications, "Id", "AppName", request.IdApp);
+            ViewBag.ApplicationId = new SelectList(db.Applications, "Id", "AppName", request.ApplicationId);
             return View(request);
         }
 
@@ -47,13 +47,13 @@ namespace TestTaskCFT.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IdApp = new SelectList(db.Applications, "Id", "AppName", request.IdApp);
+            ViewBag.ApplicationId = new SelectList(db.Applications, "Id", "AppName", request.ApplicationId);
             return View(request);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,RequestName,EndTime,DescriptionRequest,Email,IdApp")] Request request)
+        public ActionResult Edit([Bind(Include = "Id,RequestName,EndTime,DescriptionRequest,Email,ApplicationId")] Request request)
         {
             if (ModelState.IsValid)
             {
@@ -61,8 +61,14 @@ namespace TestTaskCFT.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdApp = new SelectList(db.Applications, "Id", "AppName", request.IdApp);
+            ViewBag.ApplicationId = new SelectList(db.Applications, "Id", "AppName", request.ApplicationId);
             return View(request);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
         }
 
     }

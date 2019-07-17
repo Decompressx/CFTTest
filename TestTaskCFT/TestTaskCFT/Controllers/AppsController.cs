@@ -6,7 +6,7 @@ namespace TestTaskCFT.Controllers
 {
     public class AppsController : Controller
     {
-        RequestsDBEntities db = new RequestsDBEntities();
+        ModelContext db = new ModelContext();
         public ActionResult Index()
         {
             return View(db.Applications.ToList());
@@ -29,6 +29,12 @@ namespace TestTaskCFT.Controllers
             }
 
             return View(application);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

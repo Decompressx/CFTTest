@@ -1,15 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
+
 namespace TestTaskCFT.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    public partial class Application
+    public class Application
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Application()
         {
-            this.Requests = new HashSet<Request>();
+            Requests = new List<Request>();
         }
 
         [ScaffoldColumn(false)]
@@ -23,8 +24,7 @@ namespace TestTaskCFT.Models
 
         [Display(Name = "Приоритет")]
         public int Precedency { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
         public virtual ICollection<Request> Requests { get; set; }
     }
 }

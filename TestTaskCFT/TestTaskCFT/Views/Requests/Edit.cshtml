@@ -39,8 +39,8 @@
         <p>
             @Html.LabelFor(model => model.Application.AppName)
             <br />
-            @Html.DropDownList("IdApp", null, "")
-            @Html.ValidationMessageFor(model => model.IdApp)
+            @Html.DropDownList("ApplicationId", null, "")
+            @Html.ValidationMessageFor(model => model.ApplicationId)
         </p>
         <p><input type="submit" value="Сохранить" /></p>
     </fieldset>

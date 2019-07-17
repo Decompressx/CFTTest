@@ -104,16 +104,6 @@
   <ItemGroup>
     <Content Include="Content\Style.css" />
     <Content Include="Global.asax" />
-    <Content Include="Models\RequestModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>RequestModel.Context.cs</LastGenOutput>
-      <DependentUpon>RequestModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\RequestModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RequestModel.edmx</DependentUpon>
-      <LastGenOutput>RequestModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\PagingTable.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -124,38 +114,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Application.cs">
-      <DependentUpon>RequestModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Request.cs">
-      <DependentUpon>RequestModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RequestModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RequestModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RequestModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RequestModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RequestModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RequestModel.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Application.cs" />
+    <Compile Include="Models\ModelContext.cs" />
+    <Compile Include="Models\Request.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <EntityDeploy Include="Models\RequestModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>RequestModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\RequestModel.edmx.diagram">
-      <DependentUpon>RequestModel.edmx</DependentUpon>
-    </Content>
     <None Include="packages.config" />
     <Content Include="Views\Apps\Index.cshtml" />
     <Content Include="Views\Requests\Index.cshtml" />

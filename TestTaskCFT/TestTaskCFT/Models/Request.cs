@@ -1,10 +1,12 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
+
 namespace TestTaskCFT.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    public partial class Request
+    public class Request
     {
         [ScaffoldColumn(false)]
         public int Id { get; set; }
@@ -23,8 +25,7 @@ namespace TestTaskCFT.Models
         [Required(ErrorMessage = "The email address is required")]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
-        public Nullable<int> IdApp { get; set; }
-    
-        public virtual Application Application { get; set; }
+        public int? ApplicationId { get; set; }
+        public Application Application { get; set; }
     }
 }
