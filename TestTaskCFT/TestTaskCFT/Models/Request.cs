@@ -15,6 +15,7 @@ namespace TestTaskCFT.Models
         public string RequestName { get; set; }
 
         [Display(Name = "Дата окончания разработки")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
         [DataType(DataType.Date)]
         public System.DateTime EndTime { get; set; }
 
