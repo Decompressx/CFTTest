@@ -17,12 +17,15 @@ namespace TestTaskCFT.Models
         public int Id { get; set; }
 
         [Display(Name = "Название приложения")]
+        [Required(ErrorMessage = "Поле должо быть установлено")]
         public string AppName { get; set; }
 
         [Display(Name = "Описание приложения")]
+        [Required(ErrorMessage = "Поле должо быть установлено")]
         public string DescriptionApp { get; set; }
 
         [Display(Name = "Приоритет")]
+        [Required(ErrorMessage = "Поле должо быть установлено")]
         public int Precedency { get; set; }
 
         public virtual ICollection<Request> Requests { get; set; }
