@@ -27,7 +27,7 @@ namespace TestTaskCFT.Models
 
         [Display(Name = "Email")]
         [Required(ErrorMessage = "Поле должо быть установлено")]
-        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        [EmailAddress(ErrorMessage = "Неверный адресс")]
         public string Email { get; set; }
         public int? ApplicationId { get; set; }
         public Application Application { get; set; }
