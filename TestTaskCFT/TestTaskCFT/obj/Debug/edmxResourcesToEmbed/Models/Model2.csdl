@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LibraryDNModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Author">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Books" Relationship="Self.FK__Books__Id_Author__4CA06362" FromRole="Authors" ToRole="Books" />
+  </EntityType>
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Id_Author" Type="Int32" Nullable="false" />
+    <Property Name="Publishing" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Year_Publishing" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Count_Book" Type="Int32" />
+    <NavigationProperty Name="Author" Relationship="Self.FK__Books__Id_Author__4CA06362" FromRole="Books" ToRole="Authors" />
+    <NavigationProperty Name="IssueBooks" Relationship="Self.FK__IssueBook__Id_Bo__4F7CD00D" FromRole="Books" ToRole="IssueBook" />
+  </EntityType>
+  <EntityType Name="IssueBook">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date_Issue" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Date_Delivery" Type="DateTime" Precision="0" />
+    <Property Name="Id_Book" Type="Int32" Nullable="false" />
+    <Property Name="Id_Student" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Book" Relationship="Self.FK__IssueBook__Id_Bo__4F7CD00D" FromRole="IssueBook" ToRole="Books" />
+    <NavigationProperty Name="Student" Relationship="Self.FK__IssueBook__Id_St__5070F446" FromRole="IssueBook" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Middle_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="IssueBooks" Relationship="Self.FK__IssueBook__Id_St__5070F446" FromRole="Students" ToRole="IssueBook" />
+  </EntityType>
+  <Association Name="FK__Books__Id_Author__4CA06362">
+    <End Role="Authors" Type="Self.Author" Multiplicity="1" />
+    <End Role="Books" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Authors">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Books">
+        <PropertyRef Name="Id_Author" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__IssueBook__Id_Bo__4F7CD00D">
+    <End Role="Books" Type="Self.Book" Multiplicity="1" />
+    <End Role="IssueBook" Type="Self.IssueBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Books">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="IssueBook">
+        <PropertyRef Name="Id_Book" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__IssueBook__Id_St__5070F446">
+    <End Role="Students" Type="Self.Student" Multiplicity="1" />
+    <End Role="IssueBook" Type="Self.IssueBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="IssueBook">
+        <PropertyRef Name="Id_Student" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LibraryDNEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Authors" EntityType="Self.Author" />
+    <EntitySet Name="Books" EntityType="Self.Book" />
+    <EntitySet Name="IssueBooks" EntityType="Self.IssueBook" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <AssociationSet Name="FK__Books__Id_Author__4CA06362" Association="Self.FK__Books__Id_Author__4CA06362">
+      <End Role="Authors" EntitySet="Authors" />
+      <End Role="Books" EntitySet="Books" />
+    </AssociationSet>
+    <AssociationSet Name="FK__IssueBook__Id_Bo__4F7CD00D" Association="Self.FK__IssueBook__Id_Bo__4F7CD00D">
+      <End Role="Books" EntitySet="Books" />
+      <End Role="IssueBook" EntitySet="IssueBooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK__IssueBook__Id_St__5070F446" Association="Self.FK__IssueBook__Id_St__5070F446">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="IssueBook" EntitySet="IssueBooks" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
